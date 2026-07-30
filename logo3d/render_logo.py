@@ -224,20 +224,20 @@ def add_camera(target, yaw, pitch, dist, lens=85.0, shift_y=0.0, shift_x=0.0):
     return cam
 
 
-def dark_studio(aim):
+def dark_studio(aim, edge_power=700, pool_dx=-2.0, front=1.0):
     """Dark glossy sweep with a pool of light behind the type. Shared by hero/detail."""
     gradient_world((0.33, 0.33, 0.36), (0.05, 0.05, 0.055), strength=0.9)
     # mid-dark floor: dark where unlit, but bright enough to hold the light pool
     add_floor((0.135, 0.135, 0.150), 0.11)
     # broad soft key from upper left
     area_light('key', (-9, -11, 8), (-1.5, 0, 0.6), size=18, size_y=11,
-               power=2600, spread=110)
+               power=2600 * front, spread=110)
     # long thin strip overhead: draws the specular line along the top bevels
     area_light('strip', (0, -2.6, 5.0), aim, size=30, size_y=0.5,
-               power=650, spread=80)
+               power=650 * front, spread=80)
     # grazing panel from the right: lights the extruded side walls
     area_light('edge', (16, -7, 3.6), (-0.5, 0, 0.6), size=10, size_y=6,
-               power=700, spread=60, color=(1.0, 0.99, 0.97))
+               power=edge_power, spread=60, color=(1.0, 0.99, 0.97))
     # cool rim from behind right to separate the ink from the background
     area_light('rim', (8, 9, 4.5), (0.5, 0, 0.6), size=14, size_y=7,
                power=1100, color=(0.94, 0.96, 1.0), spread=110)
@@ -246,13 +246,13 @@ def dark_studio(aim):
                power=300, color=(1.0, 0.82, 0.62), spread=90)
     # pool aimed straight down at the floor behind the mark: the bright field
     # the black half of the logotype silhouettes against
-    px = aim[0] - 2.0
+    px = aim[0] + pool_dx
     area_light('pool', (px, 9.5, 9.0), (px, 9.5, 0), size=24, size_y=15,
                power=8600, spread=125)
     # big soft board off-camera left: reads as a sheen gradient reflected in
     # the glossy black front faces without lifting them to grey
     area_light('board', (-15, -15, 3.0), (0, 0, 0.6), size=16, size_y=10,
-               power=900, spread=140, color=(0.97, 0.98, 1.0))
+               power=900 * front, spread=140, color=(0.97, 0.98, 1.0))
 
 
 def build(variant):
@@ -290,7 +290,9 @@ def build(variant):
     elif variant == 'detail':
         # three-quarter close-up on the ROMIX seam: shows depth, bevel, both inks
         aim = (1.25, 0.0, 0.62)
-        dark_studio(aim)
+        # dim the grazing panel: at this angle it hits the orange faces frontally
+        # and washes them out. Push the pool left to backlight the black letters.
+        dark_studio(aim, edge_power=240, pool_dx=-5.0, front=0.5)
         cam = add_camera(aim, yaw=30, pitch=7.0, dist=11.0, lens=85, shift_y=0.02)
         exposure = -0.45
     else:  # hero — full logotype on the dark glossy sweep
