@@ -76,9 +76,20 @@ calibrated. Cycles renders on CPU here; each final took roughly 20–30 minutes 
 Because the brand orange is easy to blow out, the renders are checked
 numerically rather than by eye: the script samples the orange ink pixels and
 reports their median RGB and green/red ratio against the #FB6100 target of
-0.386. The hero render lands at 0.415 — a lit dielectric surface picks up some
-white specular and ambient, so an exact match is not expected, but this catches
-the yellow/salmon drift that over-lighting causes.
+0.386. A lit dielectric picks up white specular and ambient, so an exact match
+is not expected — the check exists to catch the yellow/salmon drift that
+over-lighting causes, which is how the first passes were found to be wrong.
+
+| Render | Median orange RGB | G/R | Clipped |
+| --- | --- | --- | --- |
+| hero | 228, 95, 39 | 0.417 | 0.0% |
+| light studio | 247, 120, 71 | 0.486 | 0.0% |
+| detail | 245, 112, 57 | 0.457 | 0.0% |
+
+The light studio sits highest because a bright environment bounces more white
+onto the ink. The close-up needed its camera-facing lights halved (`front=0.5`)
+to reach 0.457 — at the hero's levels the same faces, filling the frame,
+measured 0.566 and read visibly coral.
 
 ```bash
 python3 logo3d/check_color.py renders/*.png
