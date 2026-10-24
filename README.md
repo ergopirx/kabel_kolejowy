@@ -99,3 +99,8 @@ python3 logo3d/check_color.py renders/*.png
 
 `logo3d/elektromix_3d.blend` is the hero scene as built by the script — open it
 to adjust the camera, materials or lighting interactively.
+
+## Also in this repository
+
+- [`beacons/`](beacons/) — a small Android app: drop GPS beacons where you stand and a compass arrow
+  always points you back to them, with distance. Framework-only Kotlin, no dependencies.
