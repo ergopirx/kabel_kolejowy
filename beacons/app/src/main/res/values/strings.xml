@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Beacons</string>
+
+    <string name="drop_here">Drop a beacon here</string>
+    <string name="grant_location">Allow precise location</string>
+    <string name="open_settings">Open app settings</string>
+    <string name="finding_position">Still finding your position…</string>
+
+    <string name="new_beacon">New beacon</string>
+    <string name="edit_beacon">Edit beacon</string>
+    <string name="default_name">Beacon %1$d</string>
+    <string name="name_hint">Name</string>
+    <string name="pinned_here">Pinned to where you stand now (±%1$d m)</string>
+    <string name="pinned_here_no_accuracy">Pinned to where you stand now</string>
+    <string name="action_drop">Drop</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_move_here">Move here</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="delete_confirm">Delete “%1$s”?</string>
+    <string name="moved_here">“%1$s” moved to where you stand</string>
+    <string name="deleted">“%1$s” deleted</string>
+
+    <!-- Status texts drawn by the compass view -->
+    <string name="status_no_permission_title">Location access needed</string>
+    <string name="status_no_permission_hint">Beacons points the way from your precise position</string>
+    <string name="status_location_off_title">Location is off</string>
+    <string name="status_location_off_hint">Turn it on in Quick Settings</string>
+    <string name="status_finding_title">Finding your position…</string>
+    <string name="status_finding_hint">A clear view of the sky helps</string>
+    <string name="status_empty_title">No beacons yet</string>
+    <string name="status_empty_hint">Drop one where you stand, then wander off</string>
+    <string name="status_pick_title">Pick a beacon</string>
+    <string name="status_pick_hint">Tap a chip below or a dot on the ring</string>
+    <string name="status_here">Here</string>
+    <string name="status_within">within ±%1$d m of the beacon</string>
+    <string name="status_accuracy">±%1$d m</string>
+    <string name="walk_minutes">~%1$d min walk</string>
+    <string name="walk_hours">~%1$d h %2$d min walk</string>
+    <string name="heading_readout">%1$d° %2$s</string>
+    <string name="no_compass">No compass · north is up</string>
+    <string name="calibrate_compass">Compass needs calibrating · wave the phone in a figure 8</string>
+</resources>
